@@ -1,3 +1,7 @@
+/* Page 36: Write a program to determine the ranges of char, short, int, and long variables,
+** both signed and unsigned... determine the ranges of the various floating-point types...
+*/
+
 #include <stdio.h>
 #include <limits.h>
 #include <float.h>
@@ -21,5 +25,21 @@ int main() {
 	printf("Min float, signed = %e\n\n", FLT_MIN);
 	printf("Max double, signed = %e\n", DBL_MAX);
 	printf("Min double, signed = %e\n\n", DBL_MIN);
+
+	printf("\nRange numerical data types, computed...\n\n");
+	signed char c;
+	/* for some reason, this doesn't work because (c + 1 > 0) evaluates to 'true'
+	** even when c = SCHAR_MAX...
+	** for (c = 1; c + 1 > 0; c++);
+	** printf("Max char, signed = %d\n", c);
+	** so we need to keep adding until c < 0 and then decrement before printing
+	*/
+	for (c = 1; c > 0; c++);
+	printf("Max char, signed = %d\n", --c);
+	for (c = -1; c < 0; c--);
+	printf("Min char, signed = %d\n", ++c);
+	/*unsigned char uc;
+	for (uc = 0; uc + 1 > 0; uc++);
+	printf("Max char, unsigned = %u\n\n", uc);*/
 
 }
