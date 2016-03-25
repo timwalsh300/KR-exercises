@@ -56,17 +56,19 @@ int main() {
 	printf("Max int, signed = %d\n", --i);
 	for (i = -1; i < 0; i--);
 	printf("Min int, signed = %d\n", ++i);
-	unsigned int ui;
-	for (ui = 1; ui > 0; ui++);
-	printf("Max int, unsigned = %u\n\n", --ui);
+	unsigned int ui = 0;
+	//for (ui = 1; ui > 0; ui++);
+	//printf("Max int, unsigned = %u\n\n", --ui);
+	printf("Max int, unsigned = %u\n\n", (ui - 1));
 
 	signed long l;
 	for (l = 1; l > 0; l++);
 	printf("Max long, signed = %d\n", --l);
 	for (l = -1; l < 0; l--);
 	printf("Min long, signed = %d\n", ++l);
-	unsigned long ul;
-	for (ul = 1; ul > 0; ul++);
-	printf("Max long, unsigned = %u\n\n", --ul);
+	unsigned long ul = 0;
+	//for (ul = 1; ul > 0; ul++);
+	//printf("Max long, unsigned = %u\n\n", --ul);
+	printf("Max long, unsigned = %u\n\n", (ul - 1));
 
 }
