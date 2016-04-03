@@ -4,39 +4,47 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "mygetline.h"
+#include "shortbinaryio.h"
+#define MAXLINE 17
 
 unsigned int setbits(unsigned int x, int p, int n, unsigned int y);
 
 int main() {
 
-	//010101 in binary
-	unsigned int input_x = 025;
-
-	//101101 in binary
-	unsigned int input_y = 055;
-
-	printf("Running setbit(010101, 4, 2, 101101)\n");
-	printf("Result in binary should be 001101 which is 015 in octal\n");
-	printf("Actual result in octal is %o\n", setbits(input_x, 4, 2, input_y));
+	char input_x[MAXLINE];
+	char input_y[MAXLINE];
+	char input_p[MAXLINE];
+	char input_n[MAXLINE];
+	char output[MAXLINE];
+	printf("Running setbit(x, p, n, y) that returns x with the n bits\n");
+	printf("beginning at position p set to the rightmost n bits of y,\n");
+	printf("positioning uses the form 543210.\n\n");
+	printf("Enter 16-bit x: ");
+	mygetline(input_x, MAXLINE);
+	printf("Enter p: ");
+	mygetline(input_p, MAXLINE);
+	printf("Enter n: ");
+	mygetline(input_n, MAXLINE);
+	printf("Enter 16-bit y: ");
+	mygetline(input_y, MAXLINE);
+	dec_to_bin(output, setbits(bin_to_dec(input_x), atoi(input_p), atoi(input_n), bin_to_dec(input_y)));
+	printf("Result is %s\n", output);
 }
 
 unsigned int setbits(unsigned int x, int p, int n, unsigned int y) {
 
-	//create mask 000011 to get rightmost n bits of y
+	//create mask to get rightmost n bits of y
 	unsigned int y_mask = ~(~0 << n);
-	printf("y_mask = %o\n", y_mask);
-	//apply mask to y... 101101 & 000011 = 000001
+	//apply mask to y
 	unsigned int y_masked = y & y_mask;
-	printf("y_masked = %o\n", y_masked);
-	//shift rightmost n bits of y to the desired starting position p... 001000
+	//shift rightmost n bits of y to the desired starting position p
 	unsigned int y_masked_and_shifted = y_masked << (p + 1 - n);
-	printf("y_masked_and_shifted = %o\n", y_masked_and_shifted);
-	//create mask 100111 to erase positions 4 and 3 of x
+	//create mask to erase targeted positions of x
 	unsigned int x_mask = ~((~(~0 << n)) << (p + 1 - n));
-	printf("x_mask = %o\n", x_mask);
-	//apply mask to x... 010101 & 100111 = 000101
+	//apply mask to x
 	unsigned int x_masked = x & x_mask;
-	printf("x_masked = %o\n", x_masked);
 	//combine x_masked with y_masked_and_shifted
 	return (x_masked | y_masked_and_shifted);
 }
