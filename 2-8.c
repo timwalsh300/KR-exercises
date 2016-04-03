@@ -3,14 +3,26 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "mygetline.h"
+#include "shortbinaryio.h"
+#define MAXLINE 17
 
 unsigned short rightrot(unsigned short x, int n);
 
 int main() {
 
-	printf("Running rightrot(0000000101101101, 4)\n");
-	printf("Result should be 1101000000010110 which is 0150026 in octal\n");
-	printf("Actual result is %o\n", rightrot(0555, 4));
+	char input_x[MAXLINE];
+	char input_n[MAXLINE];
+	char output[MAXLINE];
+	printf("Running rightrot(x, n) that returns x rotated\n");
+	printf("to the right by n bit positions\n");
+	printf("Enter 16-bit x: ");
+	mygetline(input_x, MAXLINE);
+	printf("Enter n: ");
+	mygetline(input_n, MAXLINE);
+	dec_to_bin(output, rightrot(bin_to_dec(input_x), atoi(input_n)));
+	printf("Result is %s\n", output);
 }
 
 unsigned short rightrot(unsigned short x, int n) {
