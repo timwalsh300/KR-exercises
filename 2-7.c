@@ -3,15 +3,30 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include "mygetline.h"
+#include "shortbinaryio.h"
+#define MAXLINE 17
 
 unsigned int invert(unsigned int x, int p, int n);
 
 int main() {
 
-	unsigned int input_x = 055;
-	printf("Running invert(101101, 3, 2)\n");
-	printf("Result should be 100001 which is 041 in octal\n");
-	printf("Actual result is %o\n", invert(input_x, 3, 2));
+	char input_x[MAXLINE];
+	char input_p[MAXLINE];
+	char input_n[MAXLINE];
+	char output[MAXLINE];
+	printf("Running invert(x, p, n) that returns x with the n bits\n");
+	printf("beginning at position p inverted, where\n");
+	printf("positioning uses the form 543210.\n\n");
+	printf("Enter 16-bit x: ");
+	mygetline(input_x, MAXLINE);
+	printf("Enter p: ");
+	mygetline(input_p, MAXLINE);
+	printf("Enter n: ");
+	mygetline(input_n, MAXLINE);
+	dec_to_bin(output, invert(bin_to_dec(input_x), atoi(input_p), atoi(input_n)));
+	printf("Result is %s\n", output);
 }
 
 unsigned int invert(unsigned int x, int p, int n) {
