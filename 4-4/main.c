@@ -31,18 +31,17 @@ int main() {
 			case '%':	op2 = pop();
 					push((int)pop() % (int)op2);
 					break;
-			case 'p':	printf("\tTop of stack is %f\n", peek());
+			case 'p':	printf("top of stack is %.8g\n", peek());
 					break;
 			case 's':	swap_top_two_elements();
-					printf("\tNew top of stack is %f\n", peek());
 					break;
 			case 'd':	duplicate_top_element();
-					printf("\tDuplicated %f\n", peek());
 					break;
 			case 'c':	clear();
 					break;
-			case '\n':	printf("\t%.8g\n", pop());
+			case '=':	printf("\t%.8g\n", pop());
 					break;
+			case '\n':	break;
 			default:	printf("error: unknown command %s\n", s);
 					break;
 		}
