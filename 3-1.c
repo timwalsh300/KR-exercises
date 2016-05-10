@@ -12,8 +12,8 @@ int binsearch(int x, int v[], int n);
 
 int mybinsearch(int x, int v[], int n);
 
-int main() {
-
+int main(void)
+{
 	int array[ARRAY_SIZE];
 	char find_string[MAXLINE];
 	int find_int;
@@ -32,13 +32,13 @@ int main() {
 
 	/* find index and add 1 to make it a natural number */
 	if (location = binsearch(find_int, array, ARRAY_SIZE) + 1) {
-		printf("Book function... location is %d\n", location); 
+		printf("Book function... location is %d\n", location);
 	}
 	else {
 		printf("Not found.\n");
 	}
 	if (location = mybinsearch(find_int, array, ARRAY_SIZE) + 1) {
-		printf("My function... location is %d\n", location); 
+		printf("My function... location is %d\n", location);
 	}
 	else {
 		printf("Not found.\n");
@@ -46,8 +46,8 @@ int main() {
 }
 
 /* This is given in the book... find x in v[] where n is the number of elements in v */
-int binsearch(int x, int v[], int n) {
-
+int binsearch(int x, int v[], int n)
+{
 	int low, high, mid;
 	low = 0;
 	high = n - 1;
@@ -67,8 +67,8 @@ int binsearch(int x, int v[], int n) {
 }
 
 /* This is my modified function */
-int mybinsearch(int x, int v[], int n) {
-
+int mybinsearch(int x, int v[], int n)
+{
 	int low, high, mid;
 	low = 0;
 	high = n - 1;

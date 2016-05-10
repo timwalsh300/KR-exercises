@@ -4,8 +4,8 @@
 int sp = 0;
 double val[MAXVAL];
 
-void push(double f) {
-
+void push(double f)
+{
 	if (sp < MAXVAL) {
 		val[sp++] = f;
 	}
@@ -14,8 +14,8 @@ void push(double f) {
 	}
 }
 
-double pop(void) {
-
+double pop(void)
+{
 	if (sp > 0) {
 		return val[--sp];
 	}
@@ -25,25 +25,25 @@ double pop(void) {
 	}
 }
 
-double peek(void) {
-
+double peek(void)
+{
 	return val[sp - 1];
 }
 
-void duplicate_top_element(void) {
-
+void duplicate_top_element(void)
+{
 	push(peek());
 }
 
-void swap_top_two_elements(void) {
-
+void swap_top_two_elements(void)
+{
 	double temp1 = pop();
 	double temp2 = pop();
 	push(temp1);
 	push(temp2);
 }
 
-void clear(void) {
-
+void clear(void)
+{
 	sp = 0;
 }

@@ -10,16 +10,16 @@
 
 double atof(char s[]);
 
-int main() {
-
+int main(void)
+{
 	char input_string[MAXLINE];
 	printf("Enter a number of the form XX.XX or X.Xe-XX: ");
 	mygetline(input_string, MAXLINE);
 	printf("The float version is %f\n", atof(input_string));
 }
 
-double atof(char s[]) {
-
+double atof(char s[])
+{
 	double val, power;
 	int i, sig_sign, exp;
 	int negative_exp = 0;

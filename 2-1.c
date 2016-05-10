@@ -6,8 +6,8 @@
 #include <limits.h>
 #include <float.h>
 
-int main() {
-
+int main(void)
+{
 	printf("\n\nRange of numerical data types according to the standard library...\n\n");
 	printf("Max char, signed = %d\n", SCHAR_MAX);
 	printf("Min char, signed = %d\n", SCHAR_MIN);
@@ -70,5 +70,4 @@ int main() {
 	//for (ul = 1; ul > 0; ul++);
 	//printf("Max long, unsigned = %u\n\n", --ul);
 	printf("Max long, unsigned = %u\n\n", (ul - 1));
-
 }

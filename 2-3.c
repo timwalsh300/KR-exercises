@@ -10,8 +10,8 @@
 int htoi(char s[]);
 int input_length;
 
-int main() {
-
+int main(void)
+{
 	char line[MAXLINE];
 	printf("Enter a hexadecimal value: ");
 	input_length = mygetline(line, MAXLINE);
@@ -22,8 +22,8 @@ int main() {
 
 int decode_digit(char c);
 
-int htoi(char s[]) {
-
+int htoi(char s[])
+{
 	int v = 0;
 	int i = 0;
 	/* skip over leading '0x' or '0X' */
@@ -39,8 +39,8 @@ int htoi(char s[]) {
 	return v;
 }
 
-int decode_digit(char c) {
-
+int decode_digit(char c)
+{
 	switch(c) {
 		case '0': return 0;
 		case '1': return 1;

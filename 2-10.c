@@ -8,8 +8,8 @@
 
 int lower(char out[], char s[]);
 
-int main() {
-
+int main(void)
+{
 	char input[MAXLINE];
 	char converted_input[MAXLINE];
 	printf("Enter a string: ");
@@ -18,8 +18,8 @@ int main() {
 	printf("Converted string is: %s\n", converted_input);
 }
 
-int lower(char out[], char upper[]) {
-
+int lower(char out[], char upper[])
+{
 	int counter = 0;
 	int i = 0;
 	while(upper[i] != '\0') {

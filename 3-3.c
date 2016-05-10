@@ -10,8 +10,8 @@
 
 int expand(char s1[], char s2[]);
 
-int main() {
-
+int main(void)
+{
 	char input[MAXLINE];
 	char expanded_input[MAXLINE];
 	printf("Enter a shorthand string (e.g. a-z): ");
@@ -20,8 +20,8 @@ int main() {
 	printf("Expanded string is %s\n", expanded_input);
 }
 
-int expand(char s1[], char s2[]) {
-
+int expand(char s1[], char s2[])
+{
 	int i = 0;
 	int j = 0;
 	int expansions = 0;

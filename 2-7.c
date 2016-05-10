@@ -10,8 +10,8 @@
 
 unsigned int invert(unsigned int x, int p, int n);
 
-int main() {
-
+int main(void)
+{
 	char input_x[MAXLINE];
 	char input_p[MAXLINE];
 	char input_n[MAXLINE];
@@ -29,18 +29,18 @@ int main() {
 	printf("Result is %s\n", output);
 }
 
-unsigned int invert(unsigned int x, int p, int n) {
-
-	//create mask to erase the bits in x that will change
+unsigned int invert(unsigned int x, int p, int n)
+{
+	/* create mask to erase the bits in x that will change */
 	unsigned int x_mask = ~(~(~0 << n) << (p + 1 - n));
 
-	//invert all of x
+	/* invert all of x */
 	unsigned int x_inverted = ~x;
 
-	//create mask to erase all but the inverted bits of x we need
+	/* create mask to erase all but the inverted bits of x we need */
 	unsigned int x_inverted_mask = ~x_mask;
 
-	//combine the two masked bit patterns
+	/* combine the two masked bit patterns */
 	return ((x & x_mask) | (x_inverted & x_inverted_mask));
 }
 

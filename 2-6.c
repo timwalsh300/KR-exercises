@@ -11,8 +11,8 @@
 
 unsigned int setbits(unsigned int x, int p, int n, unsigned int y);
 
-int main() {
-
+int main(void)
+{
 	char input_x[MAXLINE];
 	char input_y[MAXLINE];
 	char input_p[MAXLINE];
@@ -33,8 +33,8 @@ int main() {
 	printf("Result is %s\n", output);
 }
 
-unsigned int setbits(unsigned int x, int p, int n, unsigned int y) {
-
+unsigned int setbits(unsigned int x, int p, int n, unsigned int y)
+{
 	//create mask to get rightmost n bits of y
 	unsigned int y_mask = ~(~0 << n);
 	//apply mask to y

@@ -9,8 +9,8 @@
 
 int strrindex(char s[], char t[]);
 
-int main() {
-
+int main(void)
+{
 	char target_string[MAXLINE];
 	char search_string[MAXLINE];
 	int found;
@@ -27,8 +27,8 @@ int main() {
 	}
 }
 
-int strrindex(char s[], char t[]) {
-
+int strrindex(char s[], char t[])
+{
 	int i = strlen(s) - strlen(t);
 	for ( ; i >= 0; i--) {
 		for (int j = 0, k = i; s[k] == t[j]; j++, k++) {

@@ -3,8 +3,8 @@
 #include "calc.h"
 #define MAXOP 100
 
-int main() {
-
+int main(void)
+{
 	int type;
 	double op2;
 	char s[MAXOP];

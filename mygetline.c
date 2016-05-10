@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-int mygetline(char line[], int maxline) {
-
+int mygetline(char line[], int maxline)
+{
 	int c, i;
 	for (i = 0; i < maxline - 1 && (c = getchar()) != EOF && c != '\n'; ++i) {
 		line[i] = c;

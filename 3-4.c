@@ -10,7 +10,8 @@
 
 void itoa(int n, char s[]);
 
-int main() {
+int main(void)
+{
 	int n = -2147483648;
 	char s[11];
 	itoa(n, s);
@@ -19,8 +20,8 @@ int main() {
 
 void reverse(char s[], int length);
 
-void itoa(int n, char s[]) {
-
+void itoa(int n, char s[])
+{
 	int i, sign;
 	int max_negative = FALSE;
 
@@ -50,8 +51,8 @@ void itoa(int n, char s[]) {
 	reverse(s, i);
 }
 
-void reverse(char s[], int length) {
-
+void reverse(char s[], int length)
+{
 	int c;
 	for (int i = 0, j = length - 1; i < j; i++, j--) {
 		c = s[i];

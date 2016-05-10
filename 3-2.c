@@ -11,8 +11,8 @@ void make_escapes_visible(char s[], char t[]);
 
 void make_escapes_invisible(char s[], char t[]);
 
-int main() {
-
+int main(void)
+{
 	char t1[MAXLINE], s1[MAXLINE], t2[MAXLINE], s2[MAXLINE];
 	printf("Enter string with tabs in it: ");
 	mygetline(t1, MAXLINE);
@@ -25,8 +25,8 @@ int main() {
 	printf("Without visible escape characters that is: %s\n", s2);
 }
 
-void make_escapes_visible(char s[], char t[]) {
-
+void make_escapes_visible(char s[], char t[])
+{
 	int j = 0;
 	for (int i = 0; t[i] != '\0'; i++, j++) {
 		switch (t[i]) {
@@ -39,8 +39,8 @@ void make_escapes_visible(char s[], char t[]) {
 	s[j] = '\0';
 }
 
-void make_escapes_invisible(char s[], char t[]) {
-
+void make_escapes_invisible(char s[], char t[])
+{
 	int j = 0;
 	for (int i = 0; t[i] != '\0'; i++, j++) {
 		switch (t[i]) {

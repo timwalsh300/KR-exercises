@@ -11,8 +11,8 @@
 
 int itob(int n, char s[], int b);
 
-int main() {
-
+int main(void)
+{
 	char integer_input_string[MAXLINE];
 	char base_string[MAXLINE];
 	char output_string[MAXLINE];
@@ -27,8 +27,8 @@ int main() {
 
 void reverse(char s[]);
 
-int itob(int n, char s[], int b) {
-
+int itob(int n, char s[], int b)
+{
 	char charset[36] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 	int i, sign;
@@ -46,8 +46,8 @@ int itob(int n, char s[], int b) {
 	reverse(s);
 }
 
-void reverse(char s[]) {
-
+void reverse(char s[])
+{
 	int c, i, j;
 	for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
 		c = s[j];

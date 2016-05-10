@@ -4,8 +4,8 @@
 
 #include <stdio.h>
 
-int main() {
-
+int main(void)
+{
 	char c;
 	int lim = 100;
 	int i;
@@ -34,5 +34,4 @@ int main() {
 		}
 	}
 	printf("\n");
-
 }

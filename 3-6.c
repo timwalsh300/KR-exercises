@@ -11,7 +11,8 @@
 
 void itoa(int n, char s[], int width);
 
-int main() {
+int main(void)
+{
 	int n = 86112;
 	char s[WIDTH];
 	printf("Converting %d to a string...\n", n);
@@ -21,8 +22,8 @@ int main() {
 
 void reverse(char s[], int length);
 
-void itoa(int n, char s[], int width) {
-
+void itoa(int n, char s[], int width)
+{
 	int i, sign;
 	int max_negative = FALSE;
 
@@ -55,8 +56,8 @@ void itoa(int n, char s[], int width) {
 	reverse(s, i);
 }
 
-void reverse(char s[], int length) {
-
+void reverse(char s[], int length)
+{
 	int c;
 	for (int i = 0, j = length - 1; i < j; i++, j--) {
 		c = s[i];

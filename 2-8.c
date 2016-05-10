@@ -10,8 +10,8 @@
 
 unsigned short rightrot(unsigned short x, int n);
 
-int main() {
-
+int main(void)
+{
 	char input_x[MAXLINE];
 	char input_n[MAXLINE];
 	char output[MAXLINE];
@@ -25,17 +25,17 @@ int main() {
 	printf("Result is %s\n", output);
 }
 
-unsigned short rightrot(unsigned short x, int n) {
-
-	//reduce n to a manageable size < 16
+unsigned short rightrot(unsigned short x, int n)
+{
+	/* reduce n to a manageable size < 16 */
 	int n_reduced = n % 16;
 
-	//move the piece of x being shifted "over the edge" all the way to the left
+	/* move the piece of x being shifted "over the edge" all the way to the left */
 	unsigned short x_left = x << (16 - n_reduced);
 
-	//shift x to the right discarding bits going "over the edge"
+	/* shift x to the right discarding bits going "over the edge" */
 	x >>= n_reduced;
 
-	//combine the previous two results
+	/* combine the previous two results */
 	return (x | x_left);
 }

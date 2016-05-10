@@ -11,8 +11,8 @@
 
 int bitcount(unsigned short x);
 
-int main() {
-
+int main(void)
+{
 	char decimal_string[MAXLINE];
 	int decimal_int;
 	char binary_string[MAXLINE];
@@ -25,8 +25,8 @@ int main() {
 	printf("Number of 1-bits is %d\n", bitcount(decimal_int));
 }
 
-int bitcount(unsigned short x) {
-
+int bitcount(unsigned short x)
+{
 	int counter = 0;
 	while (x != 0) {
 		x &= (x - 1);

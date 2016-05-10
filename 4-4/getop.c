@@ -3,8 +3,8 @@
 #include <string.h>
 #include "calc.h"
 
-int getop (char s[]) {
-
+int getop (char s[])
+{
 	int i, c;
 
 	while ((s[0] = c = getch()) == ' ' || c == '\t')

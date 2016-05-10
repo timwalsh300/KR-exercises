@@ -8,8 +8,8 @@
 
 void squeeze(char s1[], char s2[]);
 
-int main() {
-
+int main(void)
+{
 	char s1[MAXLINE], s2[MAXLINE];
 	printf("Enter string #1: ");
 	mygetline(s1, MAXLINE);
@@ -19,8 +19,8 @@ int main() {
 	printf("String #1 is now %s\n", s1);
 }
 
-void squeeze(char s1[], char s2[]) {
-
+void squeeze(char s1[], char s2[])
+{
 	int i, j;
 	for (int k = 0; s2[k] != '\0'; k++) {
 		for (i = j = 0; s1[i] != '\0'; i++) {
@@ -28,7 +28,6 @@ void squeeze(char s1[], char s2[]) {
 				s1[j++] = s1[i];
 			}
 		}
-	s1[j] = '\0';
+		s1[j] = '\0';
 	}
 }
-
