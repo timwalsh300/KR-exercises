@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "calc.h"
 #define MAXOP 100
 
@@ -57,15 +58,18 @@ void decode_command(char s[])
 	} else if (strcmp(s, "clear") == 0) {
 		clear();
 	} else if (strcmp(s, "sin") == 0) {
-		//placeholder for sin access
+		push(sin(pop()));
 	} else if (strcmp(s, "cos") == 0) {
-		//placeholder for cos access
+		push(cos(pop()));
 	} else if (strcmp(s, "tan") == 0) {
-		//placeholder for tan access
+		push(tan(pop()));
 	} else if (strcmp(s, "exp") == 0) {
-		//placeholder for exp access
+		push(exp(pop()));
 	} else if (strcmp(s, "pow") == 0) {
-		//placeholder for pow access
+		double temp = pop();
+		push(pow(pop(), temp));
+	} else if (strcmp(s, "sqrt") == 0) {
+		push(sqrt(pop()));
 	} else {
 		printf("error: unknown command %s\n", s);
 	}
