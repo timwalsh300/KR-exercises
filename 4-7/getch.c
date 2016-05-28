@@ -23,7 +23,7 @@ void ungetch(int c)
 int ungets(char s[])
 {
 	int cntr = 0;
-	for (int i = 0; i < strlen(s); i++) {
+	for (int i = strlen(s) - 1; i >= 0; i--) {
 		if (s[i] != '\n') {
 			ungetch((int) s[i]);
 			cntr++;
