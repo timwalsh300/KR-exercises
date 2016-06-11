@@ -23,8 +23,6 @@ int main(void)
 
 int itoa_helper(int n, int i, char s[]);
 
-void reverse(char s[]);
-
 void itoa(int n, char s[])
 {
 	int j = 0;
@@ -36,30 +34,27 @@ void itoa(int n, char s[])
 	}
 	j = itoa_helper(n, 0, s);
 	if (negative) {
-		s[j++] = '-';
-		s[j] = '\0';
+		printf("shifting everything to the right and inserting negative sign\n");
+		for (int k = j; k >= 0; k--) {
+			s[k + 1] = s[k];
+		}
+		s[0] = '-';
 	}
-	reverse(s);
 }
 
 int itoa_helper(int n, int i, char s[])
 {
+	int j, m;
 	if (n == 0) {
+		printf("inserting NULL CHAR at index %d\n", i);
 		s[i] = '\0';
 		return i;
 	} else {
-		s[i++] = '0' + (n % 10);
+		m = n % 10;
 		n /= 10;
-		itoa_helper(n, i, s);
-	}
-}
-
-void reverse(char s[])
-{
-	int c, i, j;
-	for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
-		c = s[j];
-		s[j] = s[i];
-		s[i] = c;
+		j = itoa_helper(n, (i + 1), s);
+		printf("inserting %c at index %d\n", '0' + m, (j - i - 1));
+		s[j - i - 1] = '0' + m;
+		return j;
 	}
 }
