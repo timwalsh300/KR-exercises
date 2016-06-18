@@ -9,10 +9,14 @@ int getint(int *pn);
 int main(void)
 {
 	int *input_as_integer = malloc(sizeof(int));
+	int successful;
 
 	printf("Enter an integer: ");
-	getint(input_as_integer);
-	printf("Your input was %d\n", *input_as_integer);
+	if (getint(input_as_integer)) {
+		printf("Your input was %d\n", *input_as_integer);
+	} else {
+		printf("Your input was not an integer\n");
+	}
 }
 
 
@@ -29,6 +33,10 @@ int getint(int *pn)
 	if (c == '+' || c == '-') {
 		c = getch();
 	}
+	if (!isdigit(c)) {
+		ungetch(c);
+		return 0;
+	}
 	for (*pn = 0; isdigit(c); c = getch()) {
 		*pn = 10 * (*pn) + (c - '0');
 	}
@@ -36,5 +44,5 @@ int getint(int *pn)
 	if (c != EOF) {
 		ungetch(c);
 	}
-	return c;
+	return 1;
 }
