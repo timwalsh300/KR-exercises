@@ -19,6 +19,7 @@ int main(void)
 	char str2[MAXLINE];
 	char n_input[MAXLINE];
 	char selection[MAXLINE];
+	int result;
 
 	printf("Input string 1: ");
 	mygetline(str1, MAXLINE);
@@ -37,7 +38,15 @@ int main(void)
 		case (2):	printf("Output of strncat is ");
 				printf("%s\n", strncat(str1, str2, atoi(n_input)));
 				break;
-		case (3):	break;
+		case (3):	result = strncmp(str1, str2, atoi(n_input));
+				if (result < 0) {
+					printf("%s < %s\n", str1, str2);
+				} else if (result == 0) {
+					printf("%s == %s\n", str1, str2);
+				} else {
+					printf("%s > %s\n", str1, str2);
+				}
+				break;
 		default:	printf("%d is not a valid selection\n", atoi(selection));
 				break;
 	}
@@ -76,3 +85,17 @@ char *strncat(char *s, char *ct, int n)
 /* compare the first n characters of cs to ct, returning
 ** <0 if cs < ct, 0 if cs == ct, and >0 if cs > ct
 */
+int strncmp(char *cs, char *ct, int n)
+{
+	int i;
+	for (i = 0; i < n; i++) {
+		if (*cs == *ct) {
+			cs++;
+			ct++;
+			continue;
+		} else {
+			return (*cs - *ct);
+		}
+	}
+	return 0;
+}
