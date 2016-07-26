@@ -3,3 +3,5 @@ rather than calling alloc to maintain storage. How much faster is the
 program?
 
 compile with... gcc main.c qsort.c lines.c alloc.c mygetline.c mygetline.h linesort.h
+
+enter the EOF signal with CTRL-D after entering the lines to be sorted

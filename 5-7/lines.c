@@ -17,8 +17,8 @@ int readlines(char *lineptr[], int maxlines)
 			strcpy(p, line);
 			lineptr[nlines++] = p;
 		}
-		return nlines;
 	}
+	return nlines;
 }
 
 void writelines(char *lineptr[], int nlines)
