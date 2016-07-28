@@ -26,7 +26,6 @@ int readlines1(char *lineptr[], int maxlines)
 		}
 	}
 	end = clock();
-	clock_started = 0;
 	printf("\n\nRunning time for version 1 was %g\n\n", (double) (end - begin));
 	return nlines;
 }
@@ -55,16 +54,13 @@ int readlines2(char *lineptr[], int maxlines, char *storagep)
 		}
 	}
 	end = clock();
-	clock_started = 0;
 	printf("\n\nRunning time for version 2 was %g\n\n", (double) (end - begin));
 	return nlines;
 }
 
 void writelines(char *lineptr[], int nlines)
 {
-	int i;
-
-	for (i = 0; i < nlines; i++) {
+	for (int i = 0; i < nlines; i++) {
 		printf("%s\n", lineptr[i]);
 	}
 }
