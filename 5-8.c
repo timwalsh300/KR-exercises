@@ -35,6 +35,8 @@ static char daytab[2][13] = {
 	{0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
 };
 
+int isLeapYear(int);
+
 int day_of_year(int, int, int);
 
 int day_of_year_helper(void)
@@ -64,7 +66,7 @@ int day_of_year_helper(void)
 		printf("%s is not a valid input for the month\n", month_str);
 		return -1;
 	}
-	if (day_int < 1 || day_int > daytab[1][month_int]) {
+	if (day_int < 1 || day_int > daytab[isLeapYear(year_int)][month_int]) {
 		printf("%s is not a valid input for the day\n", day_str);
 		return -1;
 	}
@@ -79,22 +81,22 @@ void month_day_helper(char *output)
 	char num_str[MAXLINE], year_str[MAXLINE], month_str[MAXLINE], day_str[MAXLINE];
 	int *day = malloc(sizeof(int));
 	int *month = malloc(sizeof(int));
+	int valid_days;
 
 	printf("Enter the number day of the year: ");
 	mygetline(num_str, MAXLINE);
 	printf("Enter the year: ");
 	mygetline(year_str, MAXLINE);
 
-	if (atoi(num_str) < 1 || atoi(num_str) > 366) {
+	valid_days = isLeapYear(atoi(year_str)) ? 366 : 365;
+	if (atoi(num_str) < 1 || atoi(num_str) > valid_days) {
 		printf("%s is not a valid numbered day\n", num_str);
 		sprintf(output, "ERROR");
 		free(day);
 		free(month);
 		return;
 	}
-
 	month_day(atoi(year_str), atoi(num_str), month, day);
-
 	if (*month < 10) {
 		sprintf(month_str, "0%d", *month);
 	} else {
@@ -106,7 +108,6 @@ void month_day_helper(char *output)
 		sprintf(day_str, "%d", *day);
 	}
 	sprintf(output, "%s%s%s", year_str, month_str, day_str);
-
 	free(day);
 	free(month);
 }
@@ -115,7 +116,7 @@ int day_of_year(int year, int month, int day)
 {
 	int i, leap;
 
-	leap = ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+	leap = isLeapYear(year);
 	for (i = 1; i < month; i++) {
 		day += daytab[leap][i];
 	}
@@ -126,10 +127,15 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 {
 	int i, leap;
 
-	leap = ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+	leap = isLeapYear(year);
 	for (i = 1; yearday > daytab[leap][i]; i++) {
 		yearday -= daytab[leap][i];
 	}
 	*pmonth = i;
 	*pday = yearday;
+}
+
+int isLeapYear(int year)
+{
+	return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 }
