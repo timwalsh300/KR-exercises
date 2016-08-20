@@ -33,15 +33,15 @@ void detab(char *output, char *input, int columns)
 {
 	int count = 0;
 
-	while(*input  != '\0') {
-		if(*input == '\t') {
-			for(int i = 0; i < columns - count; i++) {
+	while (*input  != '\0') {
+		if (*input == '\t') {
+			for (int i = 0; i < columns - count; i++) {
 				strcat(output, "-");
 			}
 			count = 0;
 		} else {
 			strncat(output, input, 1);
-			count = (count + 1) % 8;
+			count = (count + 1) % columns;
 		}
 		input++;
 	}
