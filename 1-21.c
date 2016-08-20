@@ -51,9 +51,9 @@ void entab(char *output, char *input, int columns)
 			for (int i = 0; i < spaces; i++) {
 				strcat(output, "-");
 			}
-			strncat(output, input, 1);
-			count = (count + spaces + 1) % columns;
 			spaces = 0;
+			strncat(output, input, 1);
+			count = (count + 1) % columns;
 		}
 		input++;
 	}
