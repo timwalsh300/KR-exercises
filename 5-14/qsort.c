@@ -3,7 +3,7 @@
 static void swap(char *v[], int i, int j);
 
 void myqsort(char *v[], int left, int right,
-		int (*comp)(void *, void *))
+		int (*comp)(const char *, const char *))
 {
 	int i, last;
 

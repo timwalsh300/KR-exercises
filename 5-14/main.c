@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "flags.h"
 #define MAXLINES 5000
 
 static char *lineptr[MAXLINES];
 
-static int numcmp(char *, char *);
+static int numcmp(const char *, const char *);
 
 int main(int argc, char *argv[])
 {
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
 	printf("\nEnter lines of text followed by CTRL-D...\n\n");
 	if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
 		myqsort((void **) lineptr, 0, nlines - 1,
-			(int (*)(void *, void *))(numeric ? numcmp : strcmp));
+			(int (*)(const char *, const char *))(numeric ? numcmp : strcmp));
 		printf("\n");
 		writelines(lineptr, nlines, reverse);
 		return 0;
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
 	}
 }
 
-static int numcmp(char *s1, char *s2)
+static int numcmp(const char *s1, const char *s2)
 {
 	double v1, v2;
 
