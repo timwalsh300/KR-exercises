@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "flags.h"
 #define MAXLINES 5000
 
@@ -74,8 +75,14 @@ static int mystrcmp(const char *s1, const char *s2, int f, int d)
 	char c1, c2;
 
 	while (*s1 != '\0' && *s2 != '\0') {
-		c1 = (*s1 >= 'A' && *s1 <= 'Z' && f) ? *s1 + 32 : *s1;
-		c2 = (*s2 >= 'A' && *s2 <= 'Z' && f) ? *s2 + 32 : *s2;
+		while (d && !isalnum(*s1)) {
+			s1++;
+		}
+		while (d && !isalnum(*s2)) {
+			s2++;
+		}
+		c1 = (isupper(*s1) && f) ? *s1 + 32 : *s1;
+		c2 = (isupper(*s2) && f) ? *s2 + 32 : *s2;
 		if (c1 == c2) {
 			s1++;
 			s2++;
