@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-
-#define MAXWORD 100
-#define NKEYS (sizeof keytab / sizeof(struct key))
+#include "freq.h"
 
 extern int getch(void);
 extern void ungetch(int);
+static int getword(char *, int);
+static int binsearch(char *, struct key *, int);
 
-struct key {
-	char *word;
-	int count;
-} keytab[] = {
+static struct key keytab[] = {
 	{"auto", 0},
 	{"break", 0},
 	{"case", 0},
@@ -46,15 +43,12 @@ struct key {
 	{"while", 0}
 };
 
-int getword(char *, int);
-int binsearch(char *, struct key *, int);
-int incomment = 0;
-int inpreproc = 0;
-int inconst = 0;
-
 int main (void)
 {
 	int n;
+	incomment = 0;
+	inconst = 0;
+	inpreproc = 0;
 	char word[MAXWORD];
 
 	/* read through the input one token at a time and increment results */
@@ -79,8 +73,6 @@ int main (void)
 		}
 	}
 
-	/* sort the results in descending order */
-
 	/* print the results */
 	for (n = 0; n < NKEYS; n++) {
 		if (keytab[n].count > 0) {
@@ -90,7 +82,7 @@ int main (void)
 	return 0;
 }
 
-int binsearch(char *word, struct key tab[], int n)
+static int binsearch(char *word, struct key tab[], int n)
 {
 	int cond;
 	int low, high, mid;
@@ -110,7 +102,7 @@ int binsearch(char *word, struct key tab[], int n)
 	return -1;
 }
 
-int getword(char *word, int lim)
+static int getword(char *word, int lim)
 {
 	int c;
 	char *w = word;

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "freq.h"
 #define BUFSIZE 100
 
 static char buf[BUFSIZE];
