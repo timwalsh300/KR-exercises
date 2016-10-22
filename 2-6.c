@@ -1,14 +1,17 @@
-/* Page 49: Write a funtion setbits(x, p, n, y) that returns x with the n bits that
+/* Page 49: Write a function setbits(x, p, n, y) that returns x with the n bits that
 ** begin at position p set to the rightmost n bits of y, leaving the other
 ** bits unchanged. Positioning is like 543210.
+**
+** compile along with shortbinaryio.c
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include "mygetline.h"
-#include "shortbinaryio.h"
 #define MAXLINE 17
 
+unsigned short bin_to_dec(char in[]);
+void dec_to_bin(char output[], unsigned short input);
 unsigned int setbits(unsigned int x, int p, int n, unsigned int y);
 
 int main(void)
@@ -22,13 +25,17 @@ int main(void)
 	printf("beginning at position p set to the rightmost n bits of y,\n");
 	printf("positioning uses the form 543210.\n\n");
 	printf("Enter 16-bit x: ");
-	mygetline(input_x, MAXLINE);
+	fgets(input_x, MAXLINE, stdin);
+	input_x[strcspn(input_x, "\n")] = 0;
 	printf("Enter p: ");
-	mygetline(input_p, MAXLINE);
+	fgets(input_p, MAXLINE, stdin);
+	input_p[strcspn(input_p, "\n")] = 0;
 	printf("Enter n: ");
-	mygetline(input_n, MAXLINE);
+	fgets(input_n, MAXLINE, stdin);
+	input_n[strcspn(input_n, "\n")] = 0;
 	printf("Enter 16-bit y: ");
-	mygetline(input_y, MAXLINE);
+	fgets(input_y, MAXLINE, stdin);
+	input_y[strcspn(input_y, "\n")] = 0;
 	dec_to_bin(output, setbits(bin_to_dec(input_x), atoi(input_p), atoi(input_n), bin_to_dec(input_y)));
 	printf("Result is %s\n", output);
 }

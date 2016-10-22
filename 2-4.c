@@ -3,7 +3,6 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 void squeeze(char s1[], char s2[]);
@@ -12,9 +11,9 @@ int main(void)
 {
 	char s1[MAXLINE], s2[MAXLINE];
 	printf("Enter string #1: ");
-	mygetline(s1, MAXLINE);
+	fgets(s1, MAXLINE, stdin);
 	printf("Enter string #2: ");
-	mygetline(s2, MAXLINE);
+	fgets(s2, MAXLINE, stdin);
 	squeeze(s1, s2);
 	printf("String #1 is now %s\n", s1);
 }

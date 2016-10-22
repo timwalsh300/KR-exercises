@@ -1,4 +1,3 @@
-int mygetline(char line[], int maxline);
 char *alloc(int n);
 void afree(char *p);
 int readlines2(char *lineptr[], int nlines, char *storageptr);

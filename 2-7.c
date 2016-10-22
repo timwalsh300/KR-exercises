@@ -1,13 +1,16 @@
 /* Page 49: Write a function invert(x, p, n) that returns x with the n bits
 ** that begin at position p inverted, leaving the others unchanged
+**
+** compile along with shortbinaryio.c
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include "mygetline.h"
-#include "shortbinaryio.h"
 #define MAXLINE 17
 
+unsigned short bin_to_dec(char in[]);
+void dec_to_bin(char output[], unsigned short input);
 unsigned int invert(unsigned int x, int p, int n);
 
 int main(void)
@@ -20,11 +23,14 @@ int main(void)
 	printf("beginning at position p inverted, where\n");
 	printf("positioning uses the form 543210.\n\n");
 	printf("Enter 16-bit x: ");
-	mygetline(input_x, MAXLINE);
+	fgets(input_x, MAXLINE, stdin);
+	input_x[strcspn(input_x, "\n")] = 0;
 	printf("Enter p: ");
-	mygetline(input_p, MAXLINE);
+	fgets(input_p, MAXLINE, stdin);
+	input_p[strcspn(input_p, "\n")] = 0;
 	printf("Enter n: ");
-	mygetline(input_n, MAXLINE);
+	fgets(input_n, MAXLINE, stdin);
+	input_n[strcspn(input_n, "\n")] = 0;
 	dec_to_bin(output, invert(bin_to_dec(input_x), atoi(input_p), atoi(input_n)));
 	printf("Result is %s\n", output);
 }

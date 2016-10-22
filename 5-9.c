@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #define MAXLINE 10
 
-extern int mygetline(char *, int);
 int day_of_year_helper(void);
 void month_day_helper(char *);
 
@@ -18,7 +17,8 @@ int main(void)
 	printf("Choose 1 to get the day of the year from a date.\n");
 	printf("Choose 2 to get the date from a day of the year.\n");
 	printf("Enter selection: ");
-	mygetline(selection, MAXLINE);
+	fgets(selection, MAXLINE, stdin);
+	selection[strcspn(selection, "\n")] = 0;
 
 	if(strcmp(selection, "1") == 0) {
 		printf("The day of the year is number %d\n", day_of_year_helper());
@@ -45,7 +45,8 @@ int day_of_year_helper(void)
 	int year_int, month_int, day_int;
 
 	printf("Enter the date as yyyymmdd: ");
-	mygetline(input, MAXLINE);
+	fgets(input, MAXLINE, stdin);
+	input[strcspn(input, "\n")] = 0;
 	if (strlen(input) != 8) {
 		printf("%s is not a valid date format\n", input);
 	}
@@ -84,9 +85,11 @@ void month_day_helper(char *output)
 	int valid_days;
 
 	printf("Enter the number day of the year: ");
-	mygetline(num_str, MAXLINE);
+	fgets(num_str, MAXLINE, stdin);
+	num_str[strcspn(num_str, "\n")] = 0;
 	printf("Enter the year: ");
-	mygetline(year_str, MAXLINE);
+	fgets(year_str, MAXLINE, stdin);
+	year_str[strcspn(year_str, "\n")] = 0;
 
 	valid_days = isLeapYear(atoi(year_str)) ? 366 : 365;
 	if (atoi(num_str) < 1 || atoi(num_str) > valid_days) {

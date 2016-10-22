@@ -13,10 +13,7 @@
 #define MAXLINE 100
 #define TABSTOP 8
 
-extern int mygetline(char *, int);
-
 void detab(char *, char *, int, int, int);
-
 void entab(char *, char *, int, int, int);
 
 int main(int argc, char *argv[])
@@ -37,12 +34,14 @@ int main(int argc, char *argv[])
 
 	if (strcmp(selection, "-d") == 0) {
 		printf("Input a line with tabs: ");
-		mygetline(input, MAXLINE);
+		fgets(input, MAXLINE, stdin);
+		input[strcspn(input, "\n")] = 0;
 		detab(output, input, TABSTOP, tabs_start, custom_tabstop);
 		printf("Output with spaces is: %s\n", output);
 	} else if (strcmp(selection, "-e") == 0) {
 		printf("Input a line with spaces: ");
-		mygetline(input, MAXLINE);
+		fgets(input, MAXLINE, stdin);
+		input[strcspn(input, "\n")] = 0;
 		entab(output, input, TABSTOP, tabs_start, custom_tabstop);
 		printf("Output with tabs is: %s\n", output);
 	} else {

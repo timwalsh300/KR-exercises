@@ -5,7 +5,6 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 int expand(char s1[], char s2[]);
@@ -15,7 +14,7 @@ int main(void)
 	char input[MAXLINE];
 	char expanded_input[MAXLINE];
 	printf("Enter a shorthand string (e.g. a-z): ");
-	mygetline(input, MAXLINE);
+	fgets(input, MAXLINE, stdin);
 	expand(input, expanded_input);
 	printf("Expanded string is %s\n", expanded_input);
 }

@@ -16,4 +16,3 @@ double peek(void);
 void swap_top_two_elements(void);
 void duplicate_top_element(void);
 void clear(void);
-int mygetline(char s[], int max);

@@ -3,7 +3,6 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 int strend(char *, char *);
@@ -13,9 +12,9 @@ int main(void)
 	char string1[MAXLINE];
 	char string2[MAXLINE];
 	printf("Enter the string to search: ");
-	mygetline(string1, MAXLINE);
+	fgets(string1, MAXLINE, stdin);
 	printf("Enter the target string: ");
-	mygetline(string2, MAXLINE);
+	fgets(string2, MAXLINE, stdin);
 	if (strend(string1, string2)) {
 		printf("Yes, the first string ends with the target string.\n");
 	} else {

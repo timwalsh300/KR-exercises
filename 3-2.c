@@ -4,23 +4,21 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 void make_escapes_visible(char s[], char t[]);
-
 void make_escapes_invisible(char s[], char t[]);
 
 int main(void)
 {
 	char t1[MAXLINE], s1[MAXLINE], t2[MAXLINE], s2[MAXLINE];
 	printf("Enter string with tabs in it: ");
-	mygetline(t1, MAXLINE);
+	fgets(t1, MAXLINE, stdin);
 	make_escapes_visible(s1, t1);
 	printf("With visible escape characters that is: %s\n", s1);
 
-	printf("Enter string with \\t characters: ");
-	mygetline(t2, MAXLINE);
+	printf("Enter string with \\t and \\n characters: ");
+	fgets(t2, MAXLINE, stdin);
 	make_escapes_invisible(s2, t2);
 	printf("Without visible escape characters that is: %s\n", s2);
 }
@@ -32,6 +30,9 @@ void make_escapes_visible(char s[], char t[])
 		switch (t[i]) {
 			case '\t': s[j] = '\\';
 				   s[++j] = 't';
+				   break;
+			case '\n': s[j] = '\\';
+				   s[++j] = 'n';
 				   break;
 			default: s[j] = t[i];
 		}
@@ -46,6 +47,9 @@ void make_escapes_invisible(char s[], char t[])
 		switch (t[i]) {
 			case '\\': switch (t[i + 1]) {
 					case 't': s[j] = '\t';
+						  i++;
+						  break;
+					case 'n': s[j] = '\n';
 						  i++;
 						  break;
 					default: s[j] = t[i];

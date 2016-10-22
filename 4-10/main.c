@@ -14,7 +14,8 @@ static void decode_command(char s[]);
 int main(void)
 {
 	next = 0;
-	while (mygetline(input, MAXLINE) > 0) {
+	while (fgets(input, MAXLINE, stdin)) {
+		input[strcspn(input, "\n")] = 0;
 		parse_line();
 		next = 0;
 	}

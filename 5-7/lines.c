@@ -12,7 +12,8 @@ int readlines1(char *lineptr[], int maxlines)
 	int clock_started = 0;
 
 	nlines = 0;
-	while ((len = mygetline(line, MAXLEN)) > 0) {
+	while (fgets(line, MAXLEN, stdin)) {
+		len = strlen(line);
 		if (!clock_started) {
 			begin = clock();
 			clock_started = 1;
@@ -38,7 +39,8 @@ int readlines2(char *lineptr[], int maxlines, char *storagep)
 	int clock_started = 0;
 
 	nlines = 0;
-	while ((len = mygetline(line, MAXLEN)) > 0) {
+	while (fgets(line, MAXLEN, stdin)) {
+		len = strlen(line);
 		if (!clock_started) {
 			begin = clock();
 			clock_started = 1;

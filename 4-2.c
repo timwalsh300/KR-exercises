@@ -5,7 +5,6 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 double atof(char s[]);
@@ -14,7 +13,7 @@ int main(void)
 {
 	char input_string[MAXLINE];
 	printf("Enter a number of the form XX.XX or X.Xe-XX: ");
-	mygetline(input_string, MAXLINE);
+	fgets(input_string, MAXLINE, stdin);
 	printf("The float version is %f\n", atof(input_string));
 }
 

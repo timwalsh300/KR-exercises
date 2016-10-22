@@ -5,5 +5,5 @@ should behave rationally no matter how unreasonable the input or the value
 of n. Write the program so it makes the best use of available storage. Lines
 should be stored as in exercise 5-7.
 
-compile with... gcc main.c lines.c alloc.c mygetline.c
+compile with... gcc main.c lines.c alloc.c
 

@@ -5,13 +5,13 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
-char *strncpy(char *, char *, int);
-char *strncat(char *, char *, int);
-int strncmp(char *, char *, int);
+char *mystrncpy(char *, char *, int);
+char *mystrncat(char *, char *, int);
+int mystrncmp(char *, char *, int);
 
 int main(void)
 {
@@ -22,23 +22,25 @@ int main(void)
 	int result;
 
 	printf("Input string 1: ");
-	mygetline(str1, MAXLINE);
+	fgets(str1, MAXLINE, stdin);
+	str1[strcspn(str1, "\n")] = 0;
 	printf("Input string 2: ");
-	mygetline(str2, MAXLINE);
+	fgets(str2, MAXLINE, stdin);
+	str2[strcspn(str2, "\n")] = 0;
 	printf("Input n: ");
-	mygetline(n_input, MAXLINE);
+	fgets(n_input, MAXLINE, stdin);
 	printf("Select a function:\n");
-	printf("1. strncpy, 2. strncat, 3. strncmp\n");
+	printf("1. mystrncpy, 2. mystrncat, 3. mystrncmp\n");
 	printf("Selection: ");
-	mygetline(selection, MAXLINE);
+	fgets(selection, MAXLINE, stdin);
 	switch (atoi(selection)) {
-		case (1):	printf("Output of strncpy is ");
-				printf("%s\n", strncpy(str1, str2, atoi(n_input)));
+		case (1):	printf("Output of mystrncpy is ");
+				printf("%s\n", mystrncpy(str1, str2, atoi(n_input)));
 				break;
-		case (2):	printf("Output of strncat is ");
-				printf("%s\n", strncat(str1, str2, atoi(n_input)));
+		case (2):	printf("Output of mystrncat is ");
+				printf("%s\n", mystrncat(str1, str2, atoi(n_input)));
 				break;
-		case (3):	result = strncmp(str1, str2, atoi(n_input));
+		case (3):	result = mystrncmp(str1, str2, atoi(n_input));
 				if (result < 0) {
 					printf("%s < %s\n", str1, str2);
 				} else if (result == 0) {
@@ -53,7 +55,7 @@ int main(void)
 }
 
 /* copy first n characters of ct into s */
-char *strncpy(char *s, char *ct, int n)
+char *mystrncpy(char *s, char *ct, int n)
 {
 	int i;
 	for (i = 0; i < n; i++) {
@@ -66,7 +68,7 @@ char *strncpy(char *s, char *ct, int n)
 }
 
 /* concatenate the first n characters of ct onto s */
-char *strncat(char *s, char *ct, int n)
+char *mystrncat(char *s, char *ct, int n)
 {
 	int i, j;
 	for (j = 0; *s != '\0'; s++, j++)
@@ -85,7 +87,7 @@ char *strncat(char *s, char *ct, int n)
 /* compare the first n characters of cs to ct, returning
 ** <0 if cs < ct, 0 if cs == ct, and >0 if cs > ct
 */
-int strncmp(char *cs, char *ct, int n)
+int mystrncmp(char *cs, char *ct, int n)
 {
 	int i;
 	for (i = 0; i < n; i++) {

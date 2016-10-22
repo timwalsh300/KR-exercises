@@ -4,12 +4,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "mygetline.h"
 #define MAXLINE 10
 #define ARRAY_SIZE 45
 
 int binsearch(int x, int v[], int n);
-
 int mybinsearch(int x, int v[], int n);
 
 int main(void)
@@ -27,7 +25,7 @@ int main(void)
 	}
 	printf("Enter a number to find in the fibonnaci sequence: ");
 
-	mygetline(find_string, MAXLINE);
+	fgets(find_string, MAXLINE, stdin);
 	find_int = atoi(find_string);
 
 	/* find index and add 1 to make it a natural number */

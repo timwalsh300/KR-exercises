@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 void itoa(int n, char s[]);
@@ -16,7 +15,7 @@ int main(void)
 	char output_string[MAXLINE];
 
 	printf("Enter an integer: ");
-	mygetline(integer_input_string, MAXLINE);
+	fgets(integer_input_string, MAXLINE, stdin);
 	itoa(atoi(integer_input_string), output_string);
 	printf("The new representation is: %s\n", output_string);
 }

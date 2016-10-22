@@ -3,10 +3,10 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
+#include <string.h>
 #define MAXLINE 100
 
-int strcat(char *, char *);
+int mystrcat(char *, char *);
 
 int main(void)
 {
@@ -14,9 +14,11 @@ int main(void)
 	char str2[MAXLINE];
 
 	printf("Enter the first string: ");
-	mygetline(str1, MAXLINE);
+	fgets(str1, MAXLINE, stdin);
+	str1[strcspn(str1, "\n")] = 0;
 	printf("Enter the second string: ");
-	mygetline(str2, MAXLINE);
+	fgets(str2, MAXLINE, stdin);
+	str2[strcspn(str2, "\n")] = 0;
 	if (strcat(str1, str2)) {
 		printf("The concatenated string is %s\n", str1);
 	} else {
@@ -24,7 +26,7 @@ int main(void)
 	}
 }
 
-int strcat(char *s, char *t)
+int mystrcat(char *s, char *t)
 {
 /*	int i, j;
 **	i = j = 0;

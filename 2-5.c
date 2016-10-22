@@ -3,7 +3,7 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
+#include <string.h>
 #define MAXLINE 100
 
 int any(char s1[], char s2[]);
@@ -12,9 +12,11 @@ int main(void)
 {
 	char s1[MAXLINE], s2[MAXLINE];
 	printf("Enter string #1: ");
-	mygetline(s1, MAXLINE);
+	fgets(s1, MAXLINE, stdin);
+	s1[strcspn(s1, "\n")] = 0;
 	printf("Enter string #2: ");
-	mygetline(s2, MAXLINE);
+	fgets(s2, MAXLINE, stdin);
+	s2[strcspn(s2, "\n")] = 0;
 	printf("The first position of any match is %d\n", any(s1, s2));
 }
 

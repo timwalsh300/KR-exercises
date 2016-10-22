@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 int strrindex(char s[], char t[]);
@@ -15,9 +14,10 @@ int main(void)
 	char search_string[MAXLINE];
 	int found;
 	printf("Enter a string: ");
-	mygetline(target_string, MAXLINE);
+	fgets(target_string, MAXLINE, stdin);
 	printf("Enter a substring to find: ");
-	mygetline(search_string, MAXLINE);
+	fgets(search_string, MAXLINE, stdin);
+	search_string[strcspn(search_string, "\n")] = 0;
 	found = strrindex(target_string, search_string);
 	if (found == -1) {
 		printf("Substring does not exist\n");

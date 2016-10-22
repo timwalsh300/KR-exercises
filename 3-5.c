@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mygetline.h"
 #define MAXLINE 10
 
 int itob(int n, char s[], int b);
@@ -18,9 +17,9 @@ int main(void)
 	char output_string[MAXLINE];
 
 	printf("Enter a decimal integer to convert: ");
-	mygetline(integer_input_string, MAXLINE);
+	fgets(integer_input_string, MAXLINE, stdin);
 	printf("Enter the new base: ");
-	mygetline(base_string, MAXLINE);
+	fgets(base_string, MAXLINE, stdin);
 	itob(atoi(integer_input_string), output_string, atoi(base_string));
 	printf("The new representation is: %s\n", output_string);
 }

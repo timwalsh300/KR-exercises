@@ -19,8 +19,6 @@
 #define MAXLINE 100
 #define TABSTOP 8
 
-extern int mygetline(char *, int);
-
 void entab(char *, char *, int);
 
 int main(void)
@@ -29,7 +27,7 @@ int main(void)
 	char output[MAXLINE];
 
 	printf("Input a line with a bunch of spaces: ");
-	mygetline(input, MAXLINE);
+	fgets(input, MAXLINE, stdin);
 	entab(output, input, TABSTOP);
 	printf("Line with tabs and spaces is: %s\n", output);
 }

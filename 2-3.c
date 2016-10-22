@@ -4,18 +4,18 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
+#include <string.h>
 #define MAXLINE 100
 
 int htoi(char s[]);
-int input_length;
 
 int main(void)
 {
 	char line[MAXLINE];
 	printf("Enter a hexadecimal value: ");
-	input_length = mygetline(line, MAXLINE);
-	if (input_length > 0) {
+	fgets(line, MAXLINE, stdin);
+	line[strcspn(line, "\n")] = 0;
+	if (strlen(line) > 0) {
 		printf("The integer value is %d\n", htoi(line));
 	}
 }
@@ -27,13 +27,13 @@ int htoi(char s[])
 	int v = 0;
 	int i = 0;
 	/* skip over leading '0x' or '0X' */
-	if (input_length > 2) {
+	if (strlen(s) > 2) {
 		if (s[i] == '0' && (s[i + 1] == 'x' || s[i + 1] == 'X')) {
 			i += 2;
 		}
 	}
 	/* convert actual hexadecimal digits */
-	for ( ; i < input_length; i++) {
+	for ( ; i < strlen(s); i++) {
 		v = 16 * v + decode_digit(s[i]);
 	}
 	return v;

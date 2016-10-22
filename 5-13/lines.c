@@ -9,7 +9,8 @@ int readlines(char *lineptr[], int maxlines)
 	char *p, line[MAXLEN];
 
 	nlines = 0;
-	while ((len = mygetline(line, MAXLEN)) > 0) {
+	while (fgets(line, MAXLEN, stdin)) {
+		len = strlen(line);
 		if (nlines >= maxlines || (p = alloc(len)) == NULL) {
 			return -1;
 		} else {
