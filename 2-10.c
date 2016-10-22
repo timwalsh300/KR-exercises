@@ -3,7 +3,6 @@
 */
 
 #include <stdio.h>
-#include "mygetline.h"
 #define MAXLINE 100
 
 int lower(char out[], char s[]);
@@ -13,7 +12,7 @@ int main(void)
 	char input[MAXLINE];
 	char converted_input[MAXLINE];
 	printf("Enter a string: ");
-	mygetline(input, MAXLINE);
+	fgets(input, MAXLINE, stdin);
 	printf("Converted %d characters to lower case\n", lower(converted_input, input));
 	printf("Converted string is: %s\n", converted_input);
 }
