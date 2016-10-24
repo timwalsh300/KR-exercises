@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include "freq.h"
+
+int getch(void);
+void ungetch(int);
+static int getword(char *, int);
+static int isvartype(char *);
+static int atfunction(void);
+static int incomment, inconst, inpreproc, invarlist, inarray;
+
+int main (void)
+{
+	incomment = 0;
+	inconst = 0;
+	inpreproc = 0;
+	invarlist = 0;
+	inarray = 0;
+	char word[MAXWORD];
+
+	/* read through the input one token at a time and build the tree */
+	while (getword(word, MAXWORD) != EOF) {
+		if (word[0] == '#') {
+			inpreproc = 1;
+		} else if (word[0] == '/' && word[1] == '*') {
+			incomment = 1;
+		} else if (word[0] == '*' && word[1] == '/') {
+			incomment = 0;
+		} else if (word[0] == '"') {
+			inconst = !inconst;
+		} else if (word[0] == '[' && !inarray) {
+			inarray = 1;
+		} else if (word[0] == ']' && inarray) {
+			inarray = 0;
+		} else if (isvartype(word) && !invarlist) {
+			invarlist = 1;
+		} else if ((word[0] == ';' || word[0] == '{') && invarlist) {
+			invarlist = 0;
+		} else if (!incomment && !inpreproc && !inconst && !inarray &&
+				invarlist && (isalpha(word[0]) || word[0] == '_') &&
+				!isvartype(word) && !atfunction()) {
+			/* insert word into the tree */
+		}
+	}
+
+	/* print the results; traverse in order */
+
+}
+
+static int getword(char *word, int lim)
+{
+	int c;
+	char *w = word;
+
+	while (isspace(c = getch())) {
+		if (c == '\n' && inpreproc) {
+			inpreproc = 0;
+		}
+	}
+	if (c != EOF) {
+		*w++ = c;
+	}
+	if (!isalpha(c)) {
+		*w = '\0';
+		return c;
+	}
+	for ( ; --lim > 0; w++) {
+		if (!isalnum(*w = getch())) {
+			ungetch(*w);
+			break;
+		}
+	}
+	*w = '\0';
+	return word[0];
+}
+
+static int isvartype(char *word)
+{
+	if (strcmp(word, "int") == 0 || strcmp(word, "char") == 0 ||
+			strcmp(word, "float") == 0 || strcmp(word, "double") == 0 ||
+			strcmp(word, "struct") == 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+static int atfunction(void)
+{
+	int c;
+	if ((c = getch()) == '(') {
+		ungetch(c);
+		return 1;
+	} else {
+		ungetch(c);
+		return 0;
+	}
+}
