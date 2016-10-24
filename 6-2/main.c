@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
 #include "freq.h"
 
 int getch(void);
@@ -8,15 +9,20 @@ void ungetch(int);
 static int getword(char *, int);
 static int isvartype(char *);
 static int atfunction(void);
-static int incomment, inconst, inpreproc, invarlist, inarray;
+static int incomment, inconst, inpreproc, invarlist, inarray, nprefix;
 
-int main (void)
+int main (int argc, char *argv[])
 {
 	incomment = 0;
 	inconst = 0;
 	inpreproc = 0;
 	invarlist = 0;
 	inarray = 0;
+	if (argc > 1) {
+		nprefix = atoi(argv[1]);
+	} else {
+		nprefix = 6;
+	}
 	char word[MAXWORD];
 	struct tnode *root = NULL;
 
@@ -42,7 +48,7 @@ int main (void)
 				invarlist && (islower(word[0]) || word[0] == '_') &&
 				!isvartype(word) && !atfunction()) {
 			/* insert word into the tree */
-			root = addtree(root, word, 0);
+			root = addtree(root, word, 0, nprefix);
 		}
 	}
 

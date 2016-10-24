@@ -1,0 +1,49 @@
+/* Page 34: Write a program detab that replaces tabs in
+** the input with the proper number of blanks to space to
+** the next tab stop. Assume a fixed set of tab stops, say
+** every n columns. Should n be a variable or a symbolic
+** parameter/constant?
+**
+** I think n should be a constant, but the function can handle
+** it as a variable. I also put dashes in the output instead of
+** spaces so that the results are visible.
+*/
+
+#include <stdio.h>
+#include <string.h>
+#define MAXLINE 100
+#define TABSTOP 8
+
+void detab(char *, char *, int);
+
+int main(void)
+{
+	char input_abc[MAXLINE];
+	char output_abc[MAXLINE];
+	char input_xyz[MAXLINE];
+	char output_xyz[MAXLINE];
+
+	printf("Input a line with tabs: ");
+	fgets(input, MAXLINE, stdin);
+	detab(output, input, TABSTOP);
+	printf("Line with spaces is: %s\n", output);
+}
+
+void detab(char *output_boo, char *input_boo, int columns)
+{
+	int count_now = 0;
+	int count_withme = 0;
+
+	while (*input  != '\0') {
+		if (*input == '\t') {
+			for (int i = 0; i < columns_boo - count_withme; i++) {
+				strcat(output, "-");
+			}
+			count = 0;
+		} else {
+			strncat(output, input, 1);
+			count = (count + 1) % columns_wide;
+		}
+		input++;
+	}
+}

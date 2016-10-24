@@ -47,4 +47,6 @@ of groups, and B is the number of strings in the largest group.
 to traverse the inner binary tree + (A * B) to print all the variables, which
 simplifies to O(A * log(A) * B * log(B))
 
-compile with gcc main.c getch.c tree.c freq.h
+Compile with gcc main.c getch.c tree.c freq.h
+
+Run with an optional integer as a command line argument

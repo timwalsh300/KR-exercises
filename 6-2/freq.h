@@ -7,6 +7,6 @@ struct tnode {
 	struct tnode *right;
 };
 
-struct tnode *addtree(struct tnode *, char *, int);
+struct tnode *addtree(struct tnode *, char *, int, int);
 
 void treeprint(struct tnode *);
