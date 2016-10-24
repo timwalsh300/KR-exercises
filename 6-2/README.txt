@@ -6,22 +6,28 @@ can be set from the command line.
 
 Assumptions...
 
-1. All variables will be preceded by char, int, float, double, and/or *
+1. All variables will be preceded by char, int, float, double, long, short,
+	struct, or void... they will also start with lowercase letters
 2. Since we only care about names, I can fold together variables of 
 	the same name but types or different code blocks
 3. Output should be as follows, printing each group separated by blanks
+	about_
 	about_boo
 	about_hello
 	about_test
 
 	i
+	i
 
+	isStri
 	isString_boo
 	isString_hello
 	isString_test
 	
 	j
+	j
 
+	tempSt
 	tempStringX
 	tempStringY
 
@@ -40,3 +46,5 @@ of groups, and B is the number of strings in the largest group.
 (A * B) for each variable * log(A) to traverse the outer binary tree * log(B)
 to traverse the inner binary tree + (A * B) to print all the variables, which
 simplifies to O(A * log(A) * B * log(B))
+
+compile with gcc main.c getch.c tree.c freq.h

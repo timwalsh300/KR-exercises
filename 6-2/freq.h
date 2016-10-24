@@ -1,7 +1,12 @@
 #define MAXWORD 100
-#define NKEYS (sizeof keytab / sizeof(struct key))
 
-struct key {
+struct tnode {
 	char *word;
-	int count;
+	struct tnode *inner;
+	struct tnode *left;
+	struct tnode *right;
 };
+
+struct tnode *addtree(struct tnode *, char *, int);
+
+void treeprint(struct tnode *);

@@ -18,6 +18,7 @@ int main (void)
 	invarlist = 0;
 	inarray = 0;
 	char word[MAXWORD];
+	struct tnode *root = NULL;
 
 	/* read through the input one token at a time and build the tree */
 	while (getword(word, MAXWORD) != EOF) {
@@ -38,14 +39,16 @@ int main (void)
 		} else if ((word[0] == ';' || word[0] == '{') && invarlist) {
 			invarlist = 0;
 		} else if (!incomment && !inpreproc && !inconst && !inarray &&
-				invarlist && (isalpha(word[0]) || word[0] == '_') &&
+				invarlist && (islower(word[0]) || word[0] == '_') &&
 				!isvartype(word) && !atfunction()) {
 			/* insert word into the tree */
+			root = addtree(root, word, 0);
 		}
 	}
 
 	/* print the results; traverse in order */
-
+	treeprint(root);
+	return 0;
 }
 
 static int getword(char *word, int lim)
@@ -79,7 +82,8 @@ static int isvartype(char *word)
 {
 	if (strcmp(word, "int") == 0 || strcmp(word, "char") == 0 ||
 			strcmp(word, "float") == 0 || strcmp(word, "double") == 0 ||
-			strcmp(word, "struct") == 0) {
+			strcmp(word, "struct") == 0 || strcmp(word, "void") == 0 ||
+			strcmp(word, "short") == 0 || strcmp(word, "long") == 0) {
 		return 1;
 	} else {
 		return 0;
