@@ -1,0 +1,59 @@
+Obama officials say they're preparing an 'options paper' for the next president’s
+transition team that envisions consolidating IT services similar to the way DISA works 
+within the Defense Department.
+
+Obama administration cyber officials plan to urge the next president’s team to
+drastically centralize information technology services to reduce the risk of another massive 
+data breach, a White House official said today.
+
+Those officials are preparing an “options paper” for the next president’s
+transition team that envisions consolidating IT services for small agencies, among other 
+recommendations, Trevor Rudolph, chief of the Office of Management and Budget’s cyber
+and national security unit, told an advisory panel.
+
+Consolidating small agencies’ digital systems could lead to greater consolidation
+in the future, he said.
+
+The recommendation is a follow on to the president’s Cybersecurity National Action Plan, 
+issued in the wake of a massive data breach at the Office of Personnel Management 
+that compromised records of 21.5 million current and former federal employees.
+
+“My message to the next administration is we really need to go down this path of
+centralization, to actually reduce the risk surface as opposed to increase it,” Rudolph told 
+members of the National Institute of Standards and Technology’s Information Security and
+Privacy Advisory Board.
+
+Rudolph’s office is also working on more detailed guidance for how agencies should designate
+and protect “high-value assets” hackers might want to steal or snoop on, as 
+another follow on to the national action plan, he said. OMB will issue that guidance in the
+next few weeks, he said.
+
+OMB issued guidance for agencies today on modernizing IT portfolios to ward off cyberattacks
+and breaches.
+
+The centralized IT service envisioned by the White House might function similarly to the
+way the Defense Information Systems Agency provides centralized IT services to the 
+Defense Department, Rudolph said, though he stressed that was merely an analogy, not a model.
+
+Rudolph declined to specify a timeline for the consolidation, saying that should be decided
+by the next administration. He did say he expected it could be accomplished during 
+the next president’s term of office.
+
+Government technologists have proposed a bevy of IT modernization, consolidation and shared
+service plans, many of them with limited success. The urgency of centralizing IT 
+has grown significantly in the wake of the OPM breach, however, Rudolph said.   
+
+“In a post-OPM world, we realized all agencies perhaps shouldn’t be making these [IT]
+decisions,” he said.
+
+Two major hurdles to successful consolidation, he said, will be allocating enough money
+in the fiscal 2018 budget and rejiggering IT and security authorities so the Homeland 
+Security Department can actively secure the consolidated systems.
+
+All the consolidation recommendations would build on existing shared IT services programs
+and governmentwide security systems such as DHS’ Einstein and Continuous Diagnostics 
+and Mitigation programs, Rudolph said.
+
+Making those programs most effective may require revising the Federal Information Security
+Management Act to give DHS broader authority to deploy those and future security 
+systems, he said.
