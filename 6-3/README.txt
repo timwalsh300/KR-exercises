@@ -38,4 +38,8 @@ the coefficient in 2N due to reading and writing the whole list. I could do this
 by using a hash table instead of a binary tree, but then it would not print in alphabetical
 order.
 
+There is a known bug that the program can't correctly handle a single-quote/apostrophe within
+a word because of ASCII vs UNICODE incompatibility, so text copied from the web will not
+produce desired output for contractions.
+
 Compile with gcc main.c getch.c tree.c freq.h
