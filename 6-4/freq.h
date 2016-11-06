@@ -3,12 +3,12 @@
 
 struct tnode {
 	char *word;
-	char *lines;
+	int count;
 	struct tnode *left;
 	struct tnode *right;
 };
 
-struct tnode *addtree(struct tnode *, char *, int);
+struct tnode *addtree(struct tnode *, char *);
 
 void treeprint(struct tnode *);
 

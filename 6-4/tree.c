@@ -7,31 +7,27 @@ void treeprint(struct tnode *p)
 {
 	if (p != NULL) {
 		treeprint(p->left);
-		printf("%s: %s\n", p->word, p->lines);
+		printf("%s: %d\n", p->word, p->count);
 		treeprint(p->right);
 	}
 }
 
-struct tnode *addtree(struct tnode *p, char *w, int line)
+struct tnode *addtree(struct tnode *p, char *w)
 {
 	int cond;
-	char line_str[MAXWORD];
 
 	if (p == NULL) {
 		p = malloc(sizeof(struct tnode));
 		p->word = malloc(strlen(w) + 1);
-		p->lines = malloc(1000);
 		p->word = strcpy(p->word, w);
-		sprintf(line_str, "%d", line);
-		p->lines = strcpy(p->lines, line_str);
+		p->count = 1;
 		p->left = p->right = NULL;
 	} else if ((cond = strcmp(w, p->word)) == 0) {
-		sprintf(line_str, ", %d", line);
-		p->lines = strcat(p->lines, line_str);
+		(p->count)++;
 	} else if (cond < 0) {
-		p->left = addtree(p->left, w, line);
+		p->left = addtree(p->left, w);
 	} else {
-		p->right = addtree(p->right, w, line);
+		p->right = addtree(p->right, w);
 	}
 	return p;
 }
@@ -42,7 +38,6 @@ void freetree(struct tnode *p)
 		freetree(p->left);
 		freetree(p->right);
 		free(p->word);
-		free(p->lines);
 		free(p);
 		p == NULL;
 	}

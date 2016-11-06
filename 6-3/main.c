@@ -32,6 +32,7 @@ int main(void)
 
 	/* print the results; traverse in order */
 	treeprint(root);
+	freetree(root);
 	return 0;
 }
 

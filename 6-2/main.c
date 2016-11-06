@@ -23,7 +23,7 @@ int main (int argc, char *argv[])
 	} else {
 		nprefix = 6;
 	}
-	char word[MAXWORD];
+	char word[MAXWORD] = "";
 	struct tnode *root = NULL;
 
 	/* read through the input one token at a time and build the tree */
@@ -52,8 +52,9 @@ int main (int argc, char *argv[])
 		}
 	}
 
-	/* print the results; traverse in order */
+	/* print the results; traverse in order; then free the memory */
 	treeprint(root);
+	freetree(root);
 	return 0;
 }
 

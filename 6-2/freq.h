@@ -10,3 +10,5 @@ struct tnode {
 struct tnode *addtree(struct tnode *, char *, int, int);
 
 void treeprint(struct tnode *);
+
+void freetree(struct tnode *);
