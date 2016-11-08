@@ -1,19 +1,23 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include <stdlib.h>
 #include "freq.h"
 
 int getch(void);
 void ungetch(int);
+void myqsort(struct tnode *v[], int, int);
 static int getword(char *, int);
 
 int main(void)
 {
 	char word[MAXWORD], temp[MAXWORD];
 	struct tnode *root = NULL;
+	struct tnode *array[MAXTOKENS];
+	int counter = 0;
 
-	/* read through the input one token at a time and build the tree */
+	/* read through the input one token at a time and build the tree
+	** and the array of unique tokens
+	*/
 	while (getword(word, MAXWORD) != EOF) {
 		if (isalpha(*word)) {
 			int i = 0;
@@ -21,17 +25,18 @@ int main(void)
 				temp[i] = tolower(word[i]);
 			}
 			temp[i] = '\0';
-			root = addtree(root, temp);
+			root = addtree(root, temp, array, &counter);
 		}
 	}
 
-	/* copy all the nodes of the tree into an array */
-
 	/* sort the array by word count */
+	myqsort(array, 0, counter - 1);
 
 	/* print the contents of the array */
+	for (int i = 0; i < counter; i++) {
+		printf("%d: %s\n", array[i]->count, array[i]->word);
+	}
 
-	treeprint(root);
 	freetree(root);
 	return 0;
 }

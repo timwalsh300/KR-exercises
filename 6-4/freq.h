@@ -8,7 +8,7 @@ struct tnode {
 	struct tnode *right;
 };
 
-struct tnode *addtree(struct tnode *, char *);
+struct tnode *addtree(struct tnode *, char *, struct tnode *a[], int *);
 
 void treeprint(struct tnode *);
 

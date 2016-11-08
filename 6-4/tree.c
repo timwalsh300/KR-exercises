@@ -12,7 +12,7 @@ void treeprint(struct tnode *p)
 	}
 }
 
-struct tnode *addtree(struct tnode *p, char *w)
+struct tnode *addtree(struct tnode *p, char *w, struct tnode *a[], int *cntr)
 {
 	int cond;
 
@@ -21,13 +21,15 @@ struct tnode *addtree(struct tnode *p, char *w)
 		p->word = malloc(strlen(w) + 1);
 		p->word = strcpy(p->word, w);
 		p->count = 1;
+		a[*cntr] = p;
+		(*cntr)++;
 		p->left = p->right = NULL;
 	} else if ((cond = strcmp(w, p->word)) == 0) {
 		(p->count)++;
 	} else if (cond < 0) {
-		p->left = addtree(p->left, w);
+		p->left = addtree(p->left, w, a, cntr);
 	} else {
-		p->right = addtree(p->right, w);
+		p->right = addtree(p->right, w, a, cntr);
 	}
 	return p;
 }

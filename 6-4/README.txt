@@ -18,13 +18,19 @@ Assumptions...
 	.
 	.
 
-Design... There will be a binary tree to store word and a running count
-of how many times the word has appeared. The tree will be sorted alphabetically.
-After reading the through the input and building the complete tree, each node
-in the tree will be copied into an array and the array will be sorted by word
-count. The program will then iterate through the sorted array to print the results.
+Design... There will be a binary search tree to store each word and a running count
+of how many times the word has appeared. The tree will be sorted alphabetically. When
+inserting a new word/node into the tree, we will also store a pointer to that node in
+an array. After reading the through the input and building the complete tree and array,
+we will sort the array by word count and print the sorted result.
 
-Analysis... Reading the input and building the binary tree will take O(N*log(N)) time.
-Copying the tree into an array will be O(N). Sorting the array will be O(N*log(N))
-using quicksort. Printing the results will be O(N), where N is the number of words in
-the input. The total time complexity will be O(N*log(N)).
+Analysis... Reading the input and building the tree and array will take O(N*log(N)) time.
+Sorting the array will be O(N*log(N)) using quicksort. Printing the results will be O(N),
+where N is the number of words in the input. The total time complexity will be O(N*log(N)).
+
+compile with gcc main.c tree.c getch.c qsort.c freq.h
+
+This program has a known issue involving the incompatibility of ASCII and UNICODE character
+sets, namely with smart quotes or apostrophes vs single quotes, so for example,
+"president's" may be broken into two tokens ("president" and "s") if the text is copied
+and pasted from the web as with the provided test case.
