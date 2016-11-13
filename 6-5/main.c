@@ -17,7 +17,21 @@ int main(void)
 	install(table, "TEST7", "seoul");
 	install(table, "TEST8", "hooksett");
 
+	/* print the contents of the table */
+	for (int i = 0; i < HASHSIZE; i++) {
+		for (struct nlist *p = table[i]; p != NULL; p = p->next) {
+			printf("list %d... %s: %s\n", i, p->name, p->defn);
+		}
+	}
+	printf("\n");
+
 	/* call undef to remove some definitions from the table */
+	printf("Removing seoul\n");
+	undef(table, "TEST7");
+	printf("Removing boston\n");
+	undef(table, "TEST5");
+	printf("Removing anna\n");
+	undef(table, "TEST3");
 
 	/* print the contents of the table */
 	for (int i = 0; i < HASHSIZE; i++) {
@@ -25,6 +39,7 @@ int main(void)
 			printf("list %d... %s: %s\n", i, p->name, p->defn);
 		}
 	}
+
 
 	return 0;
 }

@@ -55,5 +55,29 @@ struct nlist *install(struct nlist *hashtab[HASHSIZE], char *name, char *defn)
 
 int undef(struct nlist *hashtab[HASHSIZE], char *name)
 {
+	struct nlist *p, *temp;
+	unsigned int hashval = hash(name);
+
+	if (strcmp(name, hashtab[hashval]->name) == 0) {
+		temp = hashtab[hashval];
+		hashtab[hashval] = temp->next;
+		free(temp->name);
+		free(temp->defn);
+		free(temp);
+		return 1;
+	}
+	temp = hashtab[hashval];
+	p = temp->next;
+	while (p != NULL) {
+		if (strcmp(name, p->name) == 0) {
+			temp->next = p->next;
+			free(p->name);
+			free(p->defn);
+			free(p);
+			return 1;
+		}
+		temp = p;
+		p = p->next;
+	}
 	return 0;
 }
