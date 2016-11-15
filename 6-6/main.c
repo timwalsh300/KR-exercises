@@ -3,7 +3,7 @@
 static int getword(char *, int);
 int getch(void);
 void ungetch(int);
-static void collectdef(char *, char *);
+static void collectdef(struct nlist *t[], char *, char *);
 
 int main(void)
 {
@@ -21,8 +21,9 @@ int main(void)
 				*/
 				char name[MAXWORD];
 				char defn[MAXWORD];
-				collectdef(name, defn);
+				collectdef(table, name, defn);
 				install(table, name, defn);
+				defn[0] = '\0';
 			} else {
 				/* write #word to the output */
 				sprintf(temp, "#%s", word);
@@ -43,22 +44,23 @@ int main(void)
 		}
 	}
 
-	printf("\n\nOutput: \n\n%s\n", output);
+	printf("\n\nOutput: \n\n%s\n\n", output);
 
 	/* print the contents of the table */
-	/*
+
 	for (int i = 0; i < HASHSIZE; i++) {
 		for (struct nlist *p = table[i]; p != NULL; p = p->next) {
 			printf("list %d... %s: %s\n", i, p->name, p->defn);
 		}
 	}
-	*/
+
 	return 0;
 }
 
-static void collectdef(char *n, char *d)
+static void collectdef(struct nlist *t[], char *n, char *d)
 {
 	int c;
+	struct nlist *p;
 	char temp[MAXWORD];
 
 	while (isspace(c = getch()))
@@ -71,8 +73,20 @@ static void collectdef(char *n, char *d)
 		;
 	ungetch(c);
 
-	while (getword(temp, MAXWORD) != '\n') {
-		strcat(d, temp);
+	while (getword(temp, MAXWORD) != EOF) {
+		if (temp[0] == '\n' && c != '\\') {
+			return;
+		} else if (temp[0] == '\\' || temp[0] == '\t' || temp[0] == '\n') {
+			c = temp[0];
+			continue;
+		} else {
+			if ((p = lookup(t, temp)) != NULL) {
+				strcat(d, p->defn);
+			} else {
+				strcat(d, temp);
+			}
+			c = temp[0];
+		}
 	}
 }
 
